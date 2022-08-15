@@ -1,6 +1,5 @@
 package com.example.onlinepoll.ex_handling;
 
-import com.sun.jdi.request.DuplicateRequestException;
 import org.postgresql.util.PSQLException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
