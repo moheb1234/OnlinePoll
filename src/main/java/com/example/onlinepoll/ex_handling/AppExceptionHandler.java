@@ -18,11 +18,6 @@ public class AppExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(DuplicateRequestException.class)
-    public ResponseEntity<Object> DuplicateRequestExceptionHandler(DuplicateRequestException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
-    }
-
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> IllegalArgumentExceptionHandler(IllegalArgumentException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
