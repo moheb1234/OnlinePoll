@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "PARTICIPANT", schema = "online_poll")
+@Table(name = "PARTICIPANT")
 public class Participant {
 
     @Id
@@ -19,7 +19,7 @@ public class Participant {
     private String name;
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinTable(name = "PARTICIPANT_CHOICES", schema = "online_poll",
+    @JoinTable(name = "PARTICIPANT_CHOICES",
             joinColumns = @JoinColumn(name = "PARTICIPANT_ID"),
             inverseJoinColumns = @JoinColumn(name = "OPTION_ID"))
     private Set<Option> choices = new HashSet<>();

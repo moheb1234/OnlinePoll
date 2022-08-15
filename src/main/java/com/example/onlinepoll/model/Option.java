@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "OPTION", schema = "online_poll")
+@Table(name = "OPTION")
 public class Option {
 
     @Id
