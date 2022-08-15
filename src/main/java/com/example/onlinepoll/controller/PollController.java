@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class PollController {
@@ -17,7 +19,7 @@ public class PollController {
         return new ResponseEntity<>(pollService.create(poll), HttpStatus.CREATED);
     }
 
-    @PutMapping("poll/edit/{link}")
+    @PostMapping("poll/edit/{link}")
     public ResponseEntity<String> edit(@PathVariable String link , @RequestBody Poll newPoll){
         return ResponseEntity.ok(pollService.edit(link, newPoll));
     }
@@ -25,5 +27,15 @@ public class PollController {
     @GetMapping("poll/find-by-link/{link}")
     public ResponseEntity<Poll> findByLink(@PathVariable String link){
         return ResponseEntity.ok(pollService.findByLink(link));
+    }
+
+    @GetMapping("poll/find-all")
+    public ResponseEntity<List<Poll>> findAll(){
+        return ResponseEntity.ok(pollService.findAll());
+    }
+
+    @DeleteMapping("poll/delete/{link}")
+    public ResponseEntity<String> delete(@PathVariable String link){
+        return ResponseEntity.ok(pollService.delete(link));
     }
 }

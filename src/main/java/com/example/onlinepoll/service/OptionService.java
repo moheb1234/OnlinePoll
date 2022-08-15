@@ -16,7 +16,7 @@ public class OptionService {
 
     @SneakyThrows
     public Option findById(long id) {
-        return optionRepository.findById(id).orElseThrow(() -> new InstanceNotFoundException(""));
+        return optionRepository.findById(id).orElseThrow(() -> new InstanceNotFoundException("no option found with id: "+id));
     }
 
     public void save(Option option) {

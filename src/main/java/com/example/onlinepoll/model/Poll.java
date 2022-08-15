@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "POLL")
+@Table(name = "POLL" , schema = "online_poll")
 public class Poll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +36,11 @@ public class Poll {
     @UpdateTimestamp
     private Date lastModifiedAt;
 
-    @OneToMany(cascade = CascadeType.REFRESH , fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.REFRESH , fetch = FetchType.EAGER , orphanRemoval = true)
     @PrimaryKeyJoinColumn
     private Set<Option> options = new HashSet<>();
 
-    @OneToMany(mappedBy = "poll",cascade = CascadeType.REFRESH , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "poll",cascade = CascadeType.REFRESH , fetch = FetchType.EAGER ,orphanRemoval = true)
     @PrimaryKeyJoinColumn
     private Set<Participant> participants = new HashSet<>();
 

@@ -13,8 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ParticipantService {
     private final ParticipantRepository participantRepository;
-
-    private final PollService pollService;
     private final OptionService optionService;
 
     public Participant create(Participant participant, List<Long> selectedOptionsId) {
@@ -22,9 +20,12 @@ public class ParticipantService {
         for (Long optionId : selectedOptionsId) {
             Option option = optionService.findById(optionId);
             poll = option.getPoll();
+            option.getParticipants().add(participant);
             participant.getChoices().add(option);
             participant.setPoll(poll);
             poll.getParticipants().add(participant);
+            participantRepository.save(participant);
+            optionService.save(option);
 
         }
         return participantRepository.save(participant);

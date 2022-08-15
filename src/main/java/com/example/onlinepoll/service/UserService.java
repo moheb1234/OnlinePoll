@@ -22,7 +22,7 @@ public class UserService implements UserDetailsService {
     @SneakyThrows
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(() -> new InstanceNotFoundException(""));
+        return userRepository.findByUsername(username).orElseThrow(() -> new InstanceNotFoundException("user name or password is wrong"));
     }
 
     public String signing(String username, String password, AuthenticationManager authenticationManager) {

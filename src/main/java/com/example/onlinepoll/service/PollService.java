@@ -9,6 +9,8 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.stereotype.Service;
 
 import javax.management.InstanceNotFoundException;
+import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -43,5 +45,15 @@ public class PollService {
         poll.setTitle(newPoll.getTitle());
         pollRepository.save(poll);
         return "poll updated successfully";
+    }
+
+    public List<Poll> findAll(){
+        return pollRepository.findAll();
+    }
+
+    public String delete(String link){
+        Poll poll = findByLink(link);
+        pollRepository.delete(poll);
+        return "poll successfully deleted";
     }
 }

@@ -12,7 +12,7 @@ import java.util.HashSet;
 
 @Data
 @Entity
-@Table(name = "USER")
+@Table(name = "USER" ,schema = "online_poll")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
