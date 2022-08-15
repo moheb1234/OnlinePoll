@@ -1,0 +1,1 @@
+insert into online_poll."user" values (3,'moheb','moallem','moheb123456','moheb12')
