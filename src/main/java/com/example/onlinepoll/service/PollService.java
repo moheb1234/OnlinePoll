@@ -18,7 +18,7 @@ public class PollService {
 
     @SneakyThrows
     public Poll findByLink(String link) {
-        return pollRepository.findByLink(link).orElseThrow(() -> new InstanceNotFoundException(""));
+        return pollRepository.findByLink(link).orElseThrow(() -> new InstanceNotFoundException("Not poll founded with link: "+link));
     }
 
     public String create(Poll poll) {
