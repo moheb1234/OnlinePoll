@@ -21,10 +21,10 @@ public class Poll {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Length(min = 3, max = 20)
+    @Length(min = 3, max = 20 , message = "title length should be between 3 and 20")
     private String title;
 
-    @Length(min = 5)
+    @Length(min = 5 , message = "description length should be at least 5")
     private String description;
 
     @Column(nullable = false, unique = true)
