@@ -9,8 +9,8 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.stereotype.Service;
 
 import javax.management.InstanceNotFoundException;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -20,13 +20,20 @@ public class PollService {
 
     @SneakyThrows
     public Poll findByLink(String link) {
-        return pollRepository.findByLink(link).orElseThrow(() -> new InstanceNotFoundException("Not poll founded with link: "+link));
+        Poll poll = pollRepository.findByLink(link).orElseThrow(() -> new InstanceNotFoundException("Not poll founded with link: " + link));
+        Set<Option> sortedOptions = poll.getOptions().stream().sorted(Comparator.comparing(Option::getId)).collect(Collectors.toCollection(LinkedHashSet::new));
+        poll.setOptions(sortedOptions);
+        return poll;
     }
 
     public String create(Poll poll) {
         String link = RandomString.make(10);
         poll.setLink(link);
-        optionService.saveAll(poll.getOptions());
+        Set<Option> options = poll.getOptions();
+        poll.setOptions(new HashSet<>());
+        save(poll);
+        optionService.saveAll(options);
+        poll.setOptions(options);
         save(poll);
         for (Option option : poll.getOptions()) {
             option.setPoll(poll);
@@ -47,11 +54,11 @@ public class PollService {
         return "poll updated successfully";
     }
 
-    public List<Poll> findAll(){
+    public List<Poll> findAll() {
         return pollRepository.findAll();
     }
 
-    public String delete(String link){
+    public String delete(String link) {
         Poll poll = findByLink(link);
         pollRepository.delete(poll);
         return "poll successfully deleted";

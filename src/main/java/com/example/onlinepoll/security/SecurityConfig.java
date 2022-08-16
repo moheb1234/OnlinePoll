@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public String[] adminAuthorizeHttp() {
-        return new String[]{"/poll/create", "/poll/edit/**","/poll/find-all"};
+        return new String[]{"/poll/create", "/poll/edit/**","/poll/find-all","/poll/delete/**","/poll/find/**"};
     }
 
 
