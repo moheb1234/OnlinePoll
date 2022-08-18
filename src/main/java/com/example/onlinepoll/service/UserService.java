@@ -40,6 +40,6 @@ public class UserService implements UserDetailsService {
             userRepository.save(admin);
             return "ok";
         }
-        throw new PSQLException("admin exist",null);
+        throw new PSQLException("",null);
     }
 }
