@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "POLL" , schema = "online_poll")
+@Table(name = "POLL")
 public class Poll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

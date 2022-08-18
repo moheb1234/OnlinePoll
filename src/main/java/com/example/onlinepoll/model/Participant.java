@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "PARTICIPANT", schema = "online_poll")
+@Table(name = "PARTICIPANT")
 public class Participant {
 
     @Id

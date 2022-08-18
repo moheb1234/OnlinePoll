@@ -13,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "OPTION", schema = "online_poll")
+@Table(name = "OPTION")
 public class Option {
 
     @Id
@@ -29,7 +29,7 @@ public class Option {
 
     @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JsonIgnoreProperties("choices")
-    @JoinTable(name = "PARTICIPANT_CHOICES", schema = "online_poll",
+    @JoinTable(name = "PARTICIPANT_CHOICES",
             joinColumns = @JoinColumn(name = "OPTION_ID"),
             inverseJoinColumns = @JoinColumn(name = "PARTICIPANT_ID"))
     private Set<Participant> participants = new HashSet<>();
