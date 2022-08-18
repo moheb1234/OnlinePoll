@@ -18,4 +18,9 @@ public class UserController {
     public ResponseEntity<String> signing(@RequestParam String username,@RequestParam String password){
         return ResponseEntity.ok(userService.signing(username,password,authenticationManager));
     }
+
+    @PostMapping("user/insert/admin/hard-code")
+    public ResponseEntity<String> insertAdmin(){
+        return ResponseEntity.ok(userService.InsertAdmin());
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.onlinepoll.service;
 
+import com.example.onlinepoll.model.User;
 import com.example.onlinepoll.repository.UserRepository;
 import com.example.onlinepoll.security.jwt.JwtUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import org.postgresql.util.PSQLException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,5 +31,15 @@ public class UserService implements UserDetailsService {
         UserDetails userDetails = loadUserByUsername(username);
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         return jwtUtils.generateJwtToken(userDetails);
+    }
+
+    @SneakyThrows
+    public String InsertAdmin() {
+        if (userRepository.count() == 0) {
+            User admin = new User("moheb", "moallem", "moheb12", "moheb123456");
+            userRepository.save(admin);
+            return "ok";
+        }
+        throw new PSQLException("admin exist",null);
     }
 }
