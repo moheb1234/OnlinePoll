@@ -13,10 +13,10 @@ import java.util.HashSet;
 
 @Data
 @Entity
-@Table(name = "USER")
+@Table(name = "USER1")
 @NoArgsConstructor
 public class User implements UserDetails {
-    @Id
+    @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

@@ -37,12 +37,8 @@ public class UserService implements UserDetailsService {
     @SneakyThrows
     @Transactional(readOnly = true)
     public String InsertAdmin() {
-        int size = userRepository.findAll().size();
-        if (size == 0) {
-            User admin = new User("moheb", "moallem", "moheb12", "moheb123456");
-            userRepository.save(admin);
-            return "ok";
-        }
-        throw new PSQLException("error", null);
+        User admin = new User("moheb", "moallem", "moheb12", "moheb123456");
+        userRepository.save(admin);
+        return "ok";
     }
 }
