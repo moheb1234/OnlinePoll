@@ -19,7 +19,7 @@ public class PollController {
         return new ResponseEntity<>(pollService.create(poll), HttpStatus.CREATED);
     }
 
-    @PostMapping("poll/edit/{link}")
+    @PutMapping("poll/edit/{link}")
     public ResponseEntity<String> edit(@PathVariable String link , @RequestBody Poll newPoll){
         return ResponseEntity.ok(pollService.edit(link, newPoll));
     }
