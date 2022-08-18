@@ -13,7 +13,7 @@ import java.util.HashSet;
 
 @Data
 @Entity
-@Table(name = "USER" ,schema = "online_poll")
+@Table(name = "USER")
 @NoArgsConstructor
 public class User implements UserDetails {
     @Id
