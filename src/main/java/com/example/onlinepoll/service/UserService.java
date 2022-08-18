@@ -35,7 +35,6 @@ public class UserService implements UserDetailsService {
     }
 
     @SneakyThrows
-    @Transactional(readOnly = true)
     public String InsertAdmin() {
         User admin = new User("moheb", "moallem", "moheb12", "moheb123456");
         userRepository.save(admin);
