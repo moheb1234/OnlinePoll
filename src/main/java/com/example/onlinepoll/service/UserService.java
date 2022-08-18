@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.InstanceNotFoundException;
 
@@ -34,12 +35,14 @@ public class UserService implements UserDetailsService {
     }
 
     @SneakyThrows
+    @Transactional(readOnly = true)
     public String InsertAdmin() {
-        if (userRepository.count() == 0) {
+        int size = userRepository.findAll().size();
+        if (size == 0) {
             User admin = new User("moheb", "moallem", "moheb12", "moheb123456");
             userRepository.save(admin);
             return "ok";
         }
-        throw new PSQLException("",null);
+        throw new PSQLException("error", null);
     }
 }
