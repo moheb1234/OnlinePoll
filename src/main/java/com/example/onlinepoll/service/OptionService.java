@@ -7,7 +7,6 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import javax.management.InstanceNotFoundException;
-import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -21,9 +20,5 @@ public class OptionService {
 
     public void save(Option option) {
         optionRepository.save(option);
-    }
-
-    public void saveAll(Set<Option> options) {
-        optionRepository.saveAll(options);
     }
 }

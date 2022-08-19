@@ -35,11 +35,11 @@ public class Poll {
     @UpdateTimestamp
     private Date lastModifiedAt;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn
     private Set<Option> options = new HashSet<>();
 
-    @OneToMany(mappedBy = "poll", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "poll", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn
     private Set<Participant> participants = new HashSet<>();
 }

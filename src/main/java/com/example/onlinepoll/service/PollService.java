@@ -33,11 +33,6 @@ public class PollService {
     public String create(Poll poll) {
         String link = RandomString.make(10);
         poll.setLink(link);
-        Set<Option> options = poll.getOptions();
-        poll.setOptions(new HashSet<>());
-        save(poll);
-        optionService.saveAll(options);
-        poll.setOptions(options);
         save(poll);
         for (Option option : poll.getOptions()) {
             option.setPoll(poll);
