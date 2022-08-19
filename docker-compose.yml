@@ -22,7 +22,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_HOST=
       - POSTGRES_DB=postgres
       - POSTGRES_USER=moheb12
       - POSTGRES_PASSWORD=moheb123456
