@@ -1,0 +1,26 @@
+services:
+  app:
+    image: 'app.jar'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postDB
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postDB:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=moheb12
+      - SPRING_DATASOURCE_PASSWORD=moheb123456
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  postDB:
+    image: 'postgres:latest'
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=moheb12
+      - POSTGRES_PASSWORD=moheb123456
