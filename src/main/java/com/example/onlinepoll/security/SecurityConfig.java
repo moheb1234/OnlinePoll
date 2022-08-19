@@ -4,7 +4,6 @@ import com.example.onlinepoll.security.jwt.JwtTokenFilter;
 import com.example.onlinepoll.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -25,6 +24,7 @@ import java.util.Collections;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Deprecated
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
     private final JwtTokenFilter jwtTokenFilter;
@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Collections.singletonList("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
@@ -77,11 +77,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public String[] adminAuthorizeHttp() {
-        return new String[]{"/poll/create", "/poll/edit/**","/poll/find-all","/poll/delete/**","/poll/find/**"};
+        return new String[]{"/poll/create", "/poll/edit/**", "/poll/find-all", "/poll/delete/**", "/poll/find/**"};
     }
 
-
     public String[] permitAllAuthorizeHttp() {
-        return new String[]{"/poll/find-by-link/**", "/user/signing","/participant/create"};
+        return new String[]{"/poll/find-by-link/**", "/user/signing", "/participant/create"};
     }
 }

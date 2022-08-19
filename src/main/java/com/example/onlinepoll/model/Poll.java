@@ -1,6 +1,5 @@
 package com.example.onlinepoll.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,16 +14,16 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "POLL" , schema = "online_poll")
+@Table(name = "POLL", schema = "online_poll")
 public class Poll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Length(min = 3, max = 20 , message = "title length should be between 3 and 20")
+    @Length(min = 3, max = 20, message = "title length should be between 3 and 20")
     private String title;
 
-    @Length(min = 5 , message = "description length should be at least 5")
+    @Length(min = 5, message = "description length should be at least 5")
     private String description;
 
     @Column(nullable = false, unique = true)
@@ -36,13 +35,11 @@ public class Poll {
     @UpdateTimestamp
     private Date lastModifiedAt;
 
-    @OneToMany(cascade = CascadeType.REFRESH , fetch = FetchType.EAGER , orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, orphanRemoval = true)
     @PrimaryKeyJoinColumn
     private Set<Option> options = new HashSet<>();
 
-    @OneToMany(mappedBy = "poll",cascade = CascadeType.REFRESH , fetch = FetchType.EAGER ,orphanRemoval = true)
+    @OneToMany(mappedBy = "poll", cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, orphanRemoval = true)
     @PrimaryKeyJoinColumn
     private Set<Participant> participants = new HashSet<>();
-
-
 }
